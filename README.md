@@ -139,7 +139,7 @@ vlan {{ vlan.id }}
 {% if trunk_interfaces %}
 {% for interface in trunk_interfaces -%}
 interface {{ interface.port }}
-    vlan trunk allowed {{ interface.allowed_vlans }}
+    vlan trunk allowed {{ interface.allowed_vlans }}{% if interface.native_vlan %},{{ interface.native_vlan }}{% endif %}
 {% if interface.native_vlan -%}
     vlan trunk native {{ interface.native_vlan }}
 {% endif %}
