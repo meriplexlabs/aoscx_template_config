@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  author: Christopher Sykes
+  description: Role to manage build and apply config from a template
+  company: Meriplex Communications
+
+  license: "MIT"
+
+  min_ansible_version: "2.9"
+
+  platforms:
+    - name: EL
+      versions:
+        - "7"
+        - "8"
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags: ["network", "template", "config"]
+dependencies: []

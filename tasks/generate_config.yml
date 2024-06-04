@@ -1,0 +1,11 @@
+- name: Generate configuration from Jinja template
+  template:
+    src: "aoscx_config.j2"
+    dest: "./configs/{{ inventory_hostname }}.cfg"
+  delegate_to: localhost
+  register: template_result
+
+- name: Label successful configs
+  set_fact:
+    config_ready: true
+  when: template_result is succeeded

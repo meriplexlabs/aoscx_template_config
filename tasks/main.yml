@@ -1,0 +1,6 @@
+- name: Generate config from template
+  include_tasks: generate_config.yml
+
+# - name: Verify config generation and apply
+#   include_tasks: apply_config.yml
+#   when: config_ready

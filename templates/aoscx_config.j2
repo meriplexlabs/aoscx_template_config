@@ -1,0 +1,41 @@
+{% if hostname %}
+hostname {{ hostname }}
+{% endif %}
+{% if domain_name %}
+domain-name {{ domain_name }}
+{% endif %}
+{% if vlans %}
+{% for vlan in vlans -%}
+vlan {{ vlan.id }}
+{%- if vlan.name %}    
+    name {{ vlan.name }}
+{% endif %}
+{% endfor %}
+{%- endif %}
+{% if trunk_interfaces %}
+{% for interface in trunk_interfaces -%}
+interface {{ interface.port }}
+    vlan trunk allowed {{ interface.allowed_vlans }}
+{% if interface.native_vlan -%}
+    vlan trunk native {{ interface.native_vlan }}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if access_interfaces %}
+{% for interface in access_interfaces %}
+interface {{ interface.port }}
+    vlan access {{ interface.vlan }}
+{% endfor %}
+{% endif %}
+{% if management_vlan and management_ip_cidr %}
+interface vlan {{ management_vlan }}
+    ip address {{ management_ip_cidr }}
+{% endif %}
+{% if search_domain %}
+ip dns domain-name {{ search_domain }}
+{% endif %}
+{% if dns_servers -%}
+{% for server in dns_servers -%}
+ip dns server-address {{ server }}
+{% endfor -%}
+{% endif -%}

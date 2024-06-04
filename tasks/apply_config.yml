@@ -1,0 +1,18 @@
+- name: Read configuration from file
+  ansible.builtin.slurp:
+    src: "./configs/{{ inventory_hostname }}.cfg"
+  register: config
+  delegate_to: localhost
+
+- name: Convert configuration to string
+  ansible.builtin.set_fact:
+    switch_config: "{{ config['content'] | b64decode }}"
+
+- name: Enter configuration mode and apply commands
+  ansible.netcommon.cli_command:
+    command: configure terminal
+  register: result
+
+- name: Apply configuration commands directly to the switch
+  arubanetworks.aoscx.aoscx_command:
+    commands: "{{ switch_config.split('\n') }}"
