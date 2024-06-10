@@ -25,16 +25,42 @@ These variables must be defined either in `host_vars`, `group_vars`, or `invento
 - `ansible_connection`: network_cli #arubanetworks.aoscx.aoscx
 
 #### Config Variables
+
+All these fields must exist, even if they are empty.
+
 - `vlans`: List of VLANs to be configured.
-- `id`: VLAN ID.
-- `name`: VLAN name (optional)
+  - `id`: VLAN ID.
+  - `name`: VLAN name (optional)
+  - `type`: VLAN type 
+- `voice_interfaces`: List of voice interfaces to be configured.
+  - `port`: Interface port.
+  - `allowed_vlans`: VLANs allowed on this trunk.
+  - `native_vlan`: Native VLAN for this trunk.
+  - `description`: Port description
 - `trunk_interfaces`: List of trunk interfaces to be configured.
-- `port`: Interface port.
-- `allowed_vlans`: VLANs allowed on this trunk.
-- `native_vlan`: Native VLAN for this trunk.
+  - `port`: Interface port.
+  - `allowed_vlans`: VLANs allowed on this trunk.
+  - `native_vlan`: Native VLAN for this trunk.
+  - `description`: Port description
 - `access_interfaces`: List of access interfaces to be configured.
-- `port`: Interface port.
-- `vlan`: VLAN assigned to this access interface.
+  - `port`: Interface port.
+  - `vlan`: VLAN assigned to this access interface.
+  - `description`: Port description
+- `vsf`: VSF settings
+  - `member`: Member number
+  - `type`: Switch type
+  - `link_1`: VSF Link 1 config
+  - `link_2`: VSF Link 2 config
+- `vsf_secondary_member`: Configure backup VSF member
+- `mstp_name`: Configure MSTP name
+- `mstp_revision`: Configure MSTP revision
+- `port_access`: Configure port access groups, roles, and profiles
+  - `lldp_group`: Configure LLDP group
+  - `role`: Configure role
+  - `profile`: Configure profile
+  - `description`: Configure description
+  - `native_vlan`: Configure Native VLAN
+  - `allowed_vlan`: Configured allowed vlans
 - `management_vlan`: Management VLAN ID.
 - `management_ip_cidr`: Management IP address with CIDR notation.
 - `dns_servers`: List of DNS server IP addresses.
