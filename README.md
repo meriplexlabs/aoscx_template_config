@@ -200,7 +200,7 @@ port-access role {{ port_access.role }}
     poe-priority critical
     vlan trunk native {{ port_access.native_vlan }}
     vlan trunk allowed {{ port_access.allowed_vlan }},{{ port_access.native_vlan }}
-port-access device-profile Aruba-IAP-Prof
+port-access device-profile {{ port_access.profile }}
     enable
     associate role {{ port_access.role }}
     associate lldp-group {{ port_access.lldp_group }}
